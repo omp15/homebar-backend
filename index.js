@@ -495,7 +495,7 @@ app.get('/api/users/:id/bar', async (req, res) => {
 
 // ── Start ────────────────────────────────────────────────────────────────────
 const PORT = process.env.PORT || 5500;
-app.listen(PORT, async () => {
-  await initDB();
+app.listen(PORT, () => {
   console.log(`Server running on http://localhost:${PORT}`);
+  initDB().catch(err => { console.error('DB init failed:', err); process.exit(1); });
 });
